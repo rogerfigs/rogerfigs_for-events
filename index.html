@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bryan Gold</title>
+  <meta name="description" content="Bryan Gold — Co-founder, CEO at #paid" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #000;
+      --card: #141414;
+      --card-border: #1f1f1f;
+      --text: #ffffff;
+      --muted: #8a8a8a;
+      --section: #6b6b6b;
+      --accent: #f5c542;
+      --pill-bg: #161616;
+      --pill-border: #232323;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: 'cv02','cv03','cv04','cv11';
+    }
+
+    main {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 48px 24px 64px;
+    }
+
+    .avatar {
+      width: 132px;
+      height: 132px;
+      border-radius: 50%;
+      display: block;
+      margin: 0 auto 24px;
+      object-fit: cover;
+      background: #2a2a2a;
+    }
+
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      text-align: center;
+      margin: 0 0 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: var(--muted);
+      font-size: 15px;
+      margin: 0 0 32px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 14px 20px;
+      border-radius: 9999px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.05s ease, background 0.15s ease, border-color 0.15s ease;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+
+    .btn:active { transform: scale(0.985); }
+
+    .btn-primary {
+      background: #ffffff;
+      color: #000;
+    }
+    .btn-primary:hover { background: #f0f0f0; }
+
+    .btn-secondary {
+      background: var(--pill-bg);
+      color: var(--text);
+      border-color: var(--pill-border);
+    }
+    .btn-secondary:hover { background: #1d1d1d; }
+
+    .btn-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .section-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--section);
+      margin: 40px 0 14px;
+    }
+
+    .card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 18px 18px;
+      text-decoration: none;
+      color: inherit;
+      margin-bottom: 10px;
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.05s ease;
+    }
+    .card:hover { background: #181818; border-color: #2a2a2a; }
+    .card:active { transform: scale(0.995); }
+
+    .card-body { flex: 1; min-width: 0; }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+      margin: 0 0 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .card-meta {
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .card-note {
+      font-size: 13px;
+      color: var(--accent);
+      margin: 6px 0 0;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #b8b8b8;
+      background: #232323;
+      border-radius: 6px;
+      padding: 3px 7px;
+    }
+
+    .chev {
+      flex-shrink: 0;
+      color: #555;
+      display: flex;
+      align-items: center;
+    }
+
+    .team {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 4px 0 6px;
+      margin: 0 -24px;
+      padding-left: 24px;
+      padding-right: 24px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .team::-webkit-scrollbar { display: none; }
+    .team { scrollbar-width: none; }
+
+    .member {
+      flex: 0 0 auto;
+      width: 132px;
+      scroll-snap-align: start;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .member-photo {
+      width: 132px;
+      height: 132px;
+      border-radius: 14px;
+      object-fit: cover;
+      background: #2a2a2a;
+      display: block;
+    }
+
+    .member-name {
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      margin: 10px 0 2px;
+    }
+
+    .member-role {
+      font-size: 13px;
+      color: var(--muted);
+      text-align: center;
+      margin: 0;
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      margin: 56px 0 0;
+    }
+
+    @media (max-width: 380px) {
+      main { padding: 36px 18px 48px; }
+      .btn-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <img class="avatar" src="assets/bryan.jpg" alt="Bryan Gold" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'avatar',style:'display:flex;align-items:center;justify-content:center;font-size:42px;font-weight:700;color:#666;background:#1d1d1d',textContent:'BG'}))" />
+    <h1>Bryan Gold</h1>
+    <p class="subtitle">Co-founder, CEO &middot; #paid</p>
+
+    <a class="btn btn-primary" href="#" id="save-contact">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+        <polyline points="17 21 17 13 7 13 7 21"/>
+        <polyline points="7 3 7 8 15 8"/>
+      </svg>
+      Save to contacts
+    </a>
+
+    <div class="btn-row">
+      <a class="btn btn-secondary" href="#" id="linkedin-link" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.13 1.45-2.13 2.94v5.67H9.37V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.59 0 4.26 2.36 4.26 5.43v6.31zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/>
+        </svg>
+        LinkedIn
+      </a>
+      <a class="btn btn-secondary" href="#" id="instagram-link" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+        </svg>
+        Instagram
+      </a>
+    </div>
+
+    <h2 class="section-title">Upcoming Events &mdash; Join Me</h2>
+
+    <a class="card" href="#" target="_blank" rel="noopener">
+      <div class="card-body">
+        <h3 class="card-title">Miami Moment @ POSSIBLE</h3>
+        <p class="card-meta">Miami &middot; Apr 28, 2026</p>
+        <p class="card-note">Registration code required for waitlist bypass</p>
+      </div>
+      <span class="chev" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="#" target="_blank" rel="noopener">
+      <div class="card-body">
+        <h3 class="card-title">Shopping Experience <span class="badge">Request</span></h3>
+        <p class="card-meta">Los Angeles &middot; May 7, 2026</p>
+      </div>
+      <span class="chev" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="#" target="_blank" rel="noopener">
+      <div class="card-body">
+        <h3 class="card-title">Shopping Experience <span class="badge">Request</span></h3>
+        <p class="card-meta">New York &middot; May 21, 2026</p>
+      </div>
+      <span class="chev" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="#" target="_blank" rel="noopener">
+      <div class="card-body">
+        <h3 class="card-title">Creator Marketing Summit</h3>
+        <p class="card-meta">New York &middot; Oct 29, 2026</p>
+        <p class="card-note">Get on the speaker lineup</p>
+      </div>
+      <span class="chev" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </span>
+    </a>
+
+    <h2 class="section-title">Resources</h2>
+
+    <a class="card" href="https://hashtagpaid.com" target="_blank" rel="noopener">
+      <div class="card-body">
+        <h3 class="card-title">#paid</h3>
+        <p class="card-meta">hashtagpaid.com</p>
+      </div>
+      <span class="chev" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="#" target="_blank" rel="noopener">
+      <div class="card-body">
+        <h3 class="card-title">Creator Signals</h3>
+        <p class="card-meta">Report &middot; #paid</p>
+      </div>
+      <span class="chev" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </span>
+    </a>
+
+    <a class="card" href="#" target="_blank" rel="noopener">
+      <div class="card-body">
+        <h3 class="card-title">2026 Creator Predictions</h3>
+        <p class="card-meta">YouTube</p>
+      </div>
+      <span class="chev" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </span>
+    </a>
+
+    <h2 class="section-title">Look Out For More Of My Team</h2>
+
+    <div class="team">
+      <a class="member" href="#" target="_blank" rel="noopener">
+        <img class="member-photo" src="assets/roger.jpg" alt="Roger Figueiredo" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'member-photo',style:'display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700;color:#666;background:#1d1d1d',textContent:'RF'}))" />
+        <p class="member-name">Roger Figueiredo</p>
+        <p class="member-role">CMO</p>
+      </a>
+      <a class="member" href="#" target="_blank" rel="noopener">
+        <img class="member-photo" src="assets/jessica.jpg" alt="Jessica Trott" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'member-photo',style:'display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700;color:#666;background:#1d1d1d',textContent:'JT'}))" />
+        <p class="member-name">Jessica Trott</p>
+        <p class="member-role">CFO</p>
+      </a>
+      <a class="member" href="#" target="_blank" rel="noopener">
+        <img class="member-photo" src="assets/adam.jpg" alt="Adam Rivietz" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'member-photo',style:'display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:700;color:#666;background:#1d1d1d',textContent:'AR'}))" />
+        <p class="member-name">Adam Rivietz</p>
+        <p class="member-role">CSO, Co-founder</p>
+      </a>
+    </div>
+
+    <p class="footer">Nice to meet you <span aria-hidden="true">&#128075;</span></p>
+  </main>
+</body>
+</html>
