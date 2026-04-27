@@ -227,6 +227,113 @@
       main { padding: 36px 18px 48px; }
       .btn-row { grid-template-columns: 1fr; }
     }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 50;
+    }
+    .modal[aria-hidden="false"] { display: flex; }
+
+    .modal-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+
+    .modal-dialog {
+      position: relative;
+      background: #141414;
+      border: 1px solid #232323;
+      border-radius: 20px;
+      padding: 28px 24px 24px;
+      width: 100%;
+      max-width: 440px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #1d1d1d;
+      border: 1px solid #2a2a2a;
+      color: #999;
+      font-size: 18px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-close:hover { background: #262626; color: #fff; }
+
+    .modal-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0 0 4px;
+      letter-spacing: -0.01em;
+    }
+
+    .modal-meta {
+      font-size: 14px;
+      color: var(--muted);
+      margin: 0 0 20px;
+    }
+
+    .modal-form { display: flex; flex-direction: column; gap: 14px; }
+
+    .modal-form label {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--section);
+    }
+
+    .modal-form input {
+      background: #0d0d0d;
+      border: 1px solid #232323;
+      border-radius: 10px;
+      padding: 12px 14px;
+      color: var(--text);
+      font-size: 15px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+    .modal-form input:focus { border-color: #444; }
+
+    .modal-form button[type="submit"] {
+      margin-top: 6px;
+    }
+
+    .modal-success {
+      text-align: center;
+      padding: 8px 0 4px;
+    }
+    .modal-success h3 {
+      margin: 0 0 6px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .modal-success p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
@@ -269,7 +376,7 @@
 
     <h2 class="section-title">Upcoming Events &mdash; Join Me</h2>
 
-    <a class="card" href="#" target="_blank" rel="noopener">
+    <a class="card" href="https://hashtagpaid.com/events/industry/miami-moment" target="_blank" rel="noopener">
       <div class="card-body">
         <h3 class="card-title">Miami Moment @ POSSIBLE</h3>
         <p class="card-meta">Miami &middot; Apr 28, 2026</p>
@@ -280,7 +387,7 @@
       </span>
     </a>
 
-    <a class="card" href="#" target="_blank" rel="noopener">
+    <a class="card" href="#" data-shopping-city="Los Angeles" data-shopping-date="May 7, 2026">
       <div class="card-body">
         <h3 class="card-title">Shopping Experience <span class="badge">Request</span></h3>
         <p class="card-meta">Los Angeles &middot; May 7, 2026</p>
@@ -290,7 +397,7 @@
       </span>
     </a>
 
-    <a class="card" href="#" target="_blank" rel="noopener">
+    <a class="card" href="#" data-shopping-city="New York" data-shopping-date="May 21, 2026">
       <div class="card-body">
         <h3 class="card-title">Shopping Experience <span class="badge">Request</span></h3>
         <p class="card-meta">New York &middot; May 21, 2026</p>
@@ -300,7 +407,7 @@
       </span>
     </a>
 
-    <a class="card" href="#" target="_blank" rel="noopener">
+    <a class="card" href="https://hashtagpaid.com/creator-marketing-summit" target="_blank" rel="noopener">
       <div class="card-body">
         <h3 class="card-title">Creator Marketing Summit</h3>
         <p class="card-meta">New York &middot; Oct 29, 2026</p>
@@ -323,7 +430,7 @@
       </span>
     </a>
 
-    <a class="card" href="#" target="_blank" rel="noopener">
+    <a class="card" href="https://hashtagpaid.com/creator-signals" target="_blank" rel="noopener">
       <div class="card-body">
         <h3 class="card-title">Creator Signals</h3>
         <p class="card-meta">Report &middot; #paid</p>
@@ -333,7 +440,7 @@
       </span>
     </a>
 
-    <a class="card" href="#" target="_blank" rel="noopener">
+    <a class="card" href="https://www.youtube.com/watch?v=R5BAzUCI72w" target="_blank" rel="noopener">
       <div class="card-body">
         <h3 class="card-title">2026 Creator Predictions</h3>
         <p class="card-meta">YouTube</p>
@@ -400,5 +507,96 @@
 
     <p class="footer">Nice to meet you <span aria-hidden="true">&#128075;</span></p>
   </main>
+
+  <div class="modal" id="shopping-modal" aria-hidden="true" role="dialog" aria-labelledby="shopping-modal-title">
+    <div class="modal-overlay" data-close></div>
+    <div class="modal-dialog">
+      <button class="modal-close" type="button" data-close aria-label="Close">&times;</button>
+      <h2 id="shopping-modal-title" class="modal-title">Request Shopping Experience</h2>
+      <p class="modal-meta" id="shopping-modal-meta"></p>
+      <form id="shopping-form" class="modal-form" novalidate>
+        <label>
+          Name
+          <input type="text" name="name" required autocomplete="name" />
+        </label>
+        <label>
+          Brand
+          <input type="text" name="brand" required autocomplete="organization" />
+        </label>
+        <label>
+          Email
+          <input type="email" name="email" required autocomplete="email" />
+        </label>
+        <button class="btn btn-primary" type="submit">Send request</button>
+      </form>
+      <div class="modal-success" hidden>
+        <h3>Thanks!</h3>
+        <p>We'll be in touch about the <span data-success-city></span> Shopping Experience.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var modal = document.getElementById('shopping-modal');
+      var meta = document.getElementById('shopping-modal-meta');
+      var form = document.getElementById('shopping-form');
+      var success = modal.querySelector('.modal-success');
+      var successCity = modal.querySelector('[data-success-city]');
+      var triggers = document.querySelectorAll('[data-shopping-city]');
+      var currentCity = '';
+      var currentDate = '';
+
+      function openModal(city, date) {
+        currentCity = city;
+        currentDate = date;
+        meta.textContent = city + ' · ' + date;
+        form.hidden = false;
+        success.hidden = true;
+        form.reset();
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        setTimeout(function () { form.querySelector('input[name="name"]').focus(); }, 50);
+      }
+
+      function closeModal() {
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+      }
+
+      triggers.forEach(function (trigger) {
+        trigger.addEventListener('click', function (e) {
+          e.preventDefault();
+          openModal(trigger.dataset.shoppingCity, trigger.dataset.shoppingDate);
+        });
+      });
+
+      modal.querySelectorAll('[data-close]').forEach(function (el) {
+        el.addEventListener('click', closeModal);
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.getAttribute('aria-hidden') === 'false') closeModal();
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var data = new FormData(form);
+        var name = (data.get('name') || '').toString().trim();
+        var brand = (data.get('brand') || '').toString().trim();
+        var email = (data.get('email') || '').toString().trim();
+        if (!name || !brand || !email) return;
+
+        var subject = currentCity + ' Shopping Experience request — ' + brand;
+        var body = 'Name: ' + name + '\nBrand: ' + brand + '\nEmail: ' + email + '\n\nEvent: ' + currentCity + ' Shopping Experience (' + currentDate + ')';
+        var mailto = 'mailto:rfigueiredo@hashtagpaid.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        window.location.href = mailto;
+
+        successCity.textContent = currentCity;
+        form.hidden = true;
+        success.hidden = false;
+      });
+    })();
+  </script>
 </body>
 </html>
